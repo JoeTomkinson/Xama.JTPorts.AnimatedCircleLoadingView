@@ -8,12 +8,18 @@ C# Port of the Android Java library [AnimatedCircleLoadingView](https://github.c
 
 ## Outstanding Tasks:
 
+- [x] Ensure Interfaces are implemented as per OOP standards.
+
+- [x] Replace android 'listeners' with events.
+
+- [ ] Replace colour implementations to match Xamarin.Android property requirements.
+
 - [ ] Ensure that non-optional parameters are all auto-populated if not supplied for the OO implementation.
 
 - [ ] Check for missing functionality in ported library and task out implementation.
 
 - [ ] Create NuGet package.
 
-- [ ] Ensure Travis-CI works against class library and NuGet package.
+- [ ] Set-up Travis-CI and make sure it works against the class library.
 
-- [ ] Fill out the Wiki.
+- [ ] Fill out the Wiki if required, otherwise pad out readme with basic usage guidelines.
