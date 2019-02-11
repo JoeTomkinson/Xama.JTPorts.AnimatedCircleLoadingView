@@ -13,17 +13,17 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
 
         public RightCircleView(Context context, int parentWidth, int mainColor, int secondaryColor) : base(context, parentWidth, mainColor, secondaryColor)
         {
-            init();
+            Init();
         }
 
-        private void init()
+        private void Init()
         {
             rightMargin = (150 * parentWidth / 700);
             bottomMargin = (50 * parentWidth / 700);
-            initPaint();
+            InitPaint();
         }
 
-        private void initPaint()
+        private void InitPaint()
         {
             paint = new Paint();
             paint.SetStyle(Paint.Style.Fill);
@@ -34,33 +34,39 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
         protected override void OnDraw(Canvas canvas)
         {
             base.OnDraw(canvas);
-            drawCircle(canvas);
+            DrawCircle(canvas);
         }
 
-        public void drawCircle(Canvas canvas)
+        public void DrawCircle(Canvas canvas)
         {
             canvas.DrawCircle(Width - rightMargin, parentCenter - bottomMargin, circleRadius, paint);
         }
 
-        public void startSecondaryCircleAnimation()
+        public void StartSecondaryCircleAnimation()
         {
             int bottomMovementAddition = (260 * parentWidth) / 700;
-            TranslateAnimation translateAnimation =
-                new TranslateAnimation(GetX(), GetX(), GetY(), GetY() + bottomMovementAddition);
-            translateAnimation.StartOffset = 200;
-            translateAnimation.Duration = 1000;
+            TranslateAnimation translateAnimation = new TranslateAnimation(GetX(), GetX(), GetY(), GetY() + bottomMovementAddition)
+            {
+                StartOffset = 200,
+                Duration = 1000
+            };
 
-            AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
-            alphaAnimation.StartOffset = 1300;
-            alphaAnimation.Duration = 200;
+            AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0)
+            {
+                StartOffset = 1300,
+                Duration = 200
+            };
 
-            AnimationSet animationSet = new AnimationSet(true);
+            AnimationSet animationSet = new AnimationSet(true)
+            {
+                FillAfter = true
+            };
+
             animationSet.AddAnimation(translateAnimation);
             animationSet.AddAnimation(alphaAnimation);
-            animationSet.FillAfter = true;
             animationSet.AnimationEnd += (s, e) =>
             {
-                setState(AnimationState.SECONDARY_CIRCLE_FINISHED);
+                SetState(AnimationState.SecondaryCircleFinished);
             };
 
             StartAnimation(animationSet);

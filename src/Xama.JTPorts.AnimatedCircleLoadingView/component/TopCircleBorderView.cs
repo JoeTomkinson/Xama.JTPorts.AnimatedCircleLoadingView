@@ -8,25 +8,25 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
 {
     class TopCircleBorderView : ComponentViewAnimation
     {
-        private static int MIN_ANGLE = 25;
-        private static int MAX_ANGLE = 180;
+        private const int MIN_ANGLE = 25;
+        private const int MAX_ANGLE = 180;
         private Paint paint;
         private RectF oval;
         private int arcAngle;
 
         public TopCircleBorderView(Context context, int parentWidth, int mainColor, int secondaryColor) : base(context, parentWidth, mainColor, secondaryColor)
         {
-            init();
+            Init();
         }
 
-        private void init()
+        private void Init()
         {
-            initPaint();
-            initOval();
+            InitPaint();
+            InitOval();
             arcAngle = MIN_ANGLE;
         }
 
-        private void initPaint()
+        private void InitPaint()
         {
             paint = new Paint
             {
@@ -37,7 +37,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             paint.AntiAlias = true;
         }
 
-        private void initOval()
+        private void InitOval()
         {
             float padding = paint.StrokeWidth / 2;
             oval = new RectF();
@@ -47,16 +47,16 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
         protected override void OnDraw(Canvas canvas)
         {
             base.OnDraw(canvas);
-            drawArcs(canvas);
+            DrawArcs(canvas);
         }
 
-        private void drawArcs(Canvas canvas)
+        private void DrawArcs(Canvas canvas)
         {
             canvas.DrawArc(oval, 270, arcAngle, false, paint);
             canvas.DrawArc(oval, 270, -arcAngle, false, paint);
         }
 
-        public void startDrawCircleAnimation()
+        public void StartDrawCircleAnimation()
         {
             ValueAnimator valueAnimator = ValueAnimator.OfInt(MIN_ANGLE, MAX_ANGLE);
             valueAnimator.SetInterpolator(new DecelerateInterpolator());
@@ -69,7 +69,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             
             valueAnimator.AnimationEnd += (s, e) =>
             {
-                setState(AnimationState.MAIN_CIRCLE_DRAWN_TOP);
+                SetState(AnimationState.MainCircleDrawnTop);
             };
 
             valueAnimator.Start();

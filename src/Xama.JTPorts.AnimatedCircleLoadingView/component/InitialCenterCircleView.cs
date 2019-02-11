@@ -15,16 +15,16 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
 
         public InitialCenterCircleView(Context context, int parentWidth, int mainColor, int secondaryColor) : base(context, parentWidth, mainColor, secondaryColor)
         {
-            init();
+            Init();
         }
 
-        private void init()
+        private void Init()
         {
-            initOval();
-            initPaint();
+            InitOval();
+            InitPaint();
         }
 
-        private void initPaint()
+        private void InitPaint()
         {
             paint = new Paint();
             paint.SetStyle(Paint.Style.FillAndStroke);
@@ -32,7 +32,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             paint.AntiAlias = true;
         }
 
-        private void initOval()
+        private void InitOval()
         {
             oval = new RectF();
             minRadius = (15 * parentWidth) / 700;
@@ -43,10 +43,10 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
         protected override void OnDraw(Canvas canvas)
         {
             base.OnDraw(canvas);
-            drawCircle(canvas);
+            DrawCircle(canvas);
         }
 
-        public void drawCircle(Canvas canvas)
+        public void DrawCircle(Canvas canvas)
         {
             RectF oval = new RectF();
             oval.Set(parentCenter - currentCircleWidth, parentCenter - currentCircleHeight,
@@ -54,19 +54,19 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             canvas.DrawOval(oval, paint);
         }
 
-        public void startTranslateTopAnimation()
+        public void StartTranslateTopAnimation()
         {
             float translationYTo = -(255 * parentWidth) / 700;
             ObjectAnimator translationY = ObjectAnimator.OfFloat(this, "translationY", 0, translationYTo);
             translationY.SetDuration(1100);
             translationY.AnimationEnd += (s, e) =>
             {
-                setState(AnimationState.MAIN_CIRCLE_TRANSLATED_TOP);
+                SetState(AnimationState.MainCircleTranslatedTop);
             };
             translationY.Start();
         }
 
-        public void startScaleAnimation()
+        public void StartScaleAnimation()
         {
             ValueAnimator valueAnimator = ValueAnimator.OfFloat(minRadius, circleRadius);
             valueAnimator.SetDuration(1400);
@@ -79,7 +79,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             valueAnimator.Start();
         }
 
-        public void startTranslateBottomAnimation()
+        public void StartTranslateBottomAnimation()
         {
             float translationYFrom = -(260 * parentWidth) / 700;
             float translationYTo = (360 * parentWidth) / 700;
@@ -88,7 +88,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             translationY.Start();
         }
 
-        public void startScaleDisappear()
+        public void StartScaleDisappear()
         {
             float maxScaleSize = (250 * parentWidth) / 700;
             ValueAnimator valueScaleWidthAnimator = ValueAnimator.OfFloat(circleRadius, maxScaleSize);
@@ -101,7 +101,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             };
             valueScaleWidthAnimator.AnimationEnd += (s, e) =>
             {
-                setState(AnimationState.MAIN_CIRCLE_SCALED_DISAPPEAR);
+                SetState(AnimationState.MainCircleScaledDisappear);
                 currentCircleWidth = circleRadius + (strokeWidth / 2);
                 currentCircleHeight = circleRadius + (strokeWidth / 2);
             };
@@ -118,14 +118,14 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             valueScaleHeightAnimator.Start();
         }
 
-        public void startTranslateCenterAnimation()
+        public void StartTranslateCenterAnimation()
         {
             float translationYFrom = -(260 * parentWidth) / 700;
             ObjectAnimator translationY = ObjectAnimator.OfFloat(this, "translationY", translationYFrom, 0);
             translationY.SetDuration(650);
             translationY.AnimationEnd += (s, e) =>
             {
-                setState(AnimationState.MAIN_CIRCLE_TRANSLATED_CENTER);
+                SetState(AnimationState.MainCircleTranslatedCenter);
             };
             translationY.Start();
         }

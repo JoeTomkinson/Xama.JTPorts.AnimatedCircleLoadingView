@@ -2,6 +2,6 @@
 {
     public interface IAnimationListener
     {
-        void onAnimationEnd(bool success);
+        void OnAnimationEnd(bool success);
     }
 }

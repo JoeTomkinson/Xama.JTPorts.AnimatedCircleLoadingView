@@ -14,16 +14,16 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
 
         public MainCircleView(Context context, int parentWidth, int mainColor, int secondaryColor) : base(context, parentWidth, mainColor, secondaryColor)
         {
-            init();
+            Init();
         }
 
-        private void init()
+        private void Init()
         {
-            initPaint();
-            initOval();
+            InitPaint();
+            InitOval();
         }
 
-        private void initPaint()
+        private void InitPaint()
         {
             paint = new Paint();
             paint.SetColorFilter(mainColor);
@@ -32,7 +32,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             paint.AntiAlias = true;
         }
 
-        private void initOval()
+        private void InitOval()
         {
             float padding = paint.StrokeWidth / 2;
             oval = new RectF();
@@ -42,15 +42,15 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
         protected override void OnDraw(Canvas canvas)
         {
             base.OnDraw(canvas);
-            drawArcs(canvas);
+            DrawArcs(canvas);
         }
 
-        private void drawArcs(Canvas canvas)
+        private void DrawArcs(Canvas canvas)
         {
             canvas.DrawArc(oval, arcStartAngle, arcFillAngle, false, paint);
         }
 
-        public void startFillCircleAnimation()
+        public void StartFillCircleAnimation()
         {
             ValueAnimator valueAnimator = ValueAnimator.OfInt(90, 360);
             valueAnimator.SetDuration(800);
@@ -62,7 +62,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             };
             valueAnimator.AnimationEnd += (s, e) =>
             {
-                setState(AnimationState.MAIN_CIRCLE_FILLED_TOP);
+                SetState(AnimationState.MainCircleFilledTop);
             };
             valueAnimator.Start();
         }

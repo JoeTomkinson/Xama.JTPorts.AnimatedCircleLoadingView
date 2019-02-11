@@ -11,7 +11,6 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
         protected int parentWidth;
         protected int mainColor;
         protected int secondaryColor;
-
         protected float parentCenter;
         protected float circleRadius;
         protected int strokeWidth;
@@ -22,32 +21,32 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             this.parentWidth = parentWidth;
             this.mainColor = mainColor;
             this.secondaryColor = secondaryColor;
-            init();
+            Init();
         }
 
-        private void init()
+        private void Init()
         {
-            hideView();
+            HideView();
             circleRadius = parentWidth / 10;
             parentCenter = parentWidth / 2;
             strokeWidth = (12 * parentWidth) / 700;
         }
 
-        public void hideView()
+        public void HideView()
         {
             Visibility = ViewStates.Gone;
         }
 
-        public void showView()
+        public void ShowView()
         {
             Visibility = ViewStates.Visible;
         }
 
-        public void setState(AnimationState state)
+        public void SetState(AnimationState state)
         {
             if (stateListener != null)
             {
-                stateListener.onStateChanged(state);
+                stateListener.OnStateChanged(state);
             }
             else
             {
@@ -55,7 +54,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             }
         }
 
-        public void setStateListener(IStateListener stateListener)
+        public void SetStateListener(IStateListener stateListener)
         {
             this.stateListener = stateListener;
         }

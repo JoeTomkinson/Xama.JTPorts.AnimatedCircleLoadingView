@@ -5,19 +5,17 @@ using Android.Util;
 using Android.Widget;
 using Xama.JTPorts.AnimatedCircleLoadingView.component;
 using Xama.JTPorts.AnimatedCircleLoadingView.component.finish;
-using Xama.JTPorts.AnimatedCircleLoadingView.interfaces;
-using static Android.Views.Animations.Animation;
 using IAnimationListener = Xama.JTPorts.AnimatedCircleLoadingView.interfaces.IAnimationListener;
 
 namespace Xama.JTPorts.AnimatedCircleLoadingView
 {
-    public class AnimatedCircleLoadingView : FrameLayout, IAnimationListener
+    public class AnimatedCircleLoadingView : FrameLayout
     {
-        private static string DEFAULT_HEX_MAIN_COLOR = "#FF9A00";
-        private static string DEFAULT_HEX_SECONDARY_COLOR = "#BDBDBD";
-        private static string DEFAULT_HEX_TINT_COLOR = "#FFFFFF";
-        private static string DEFAULT_HEX_TEXT_COLOR = "#FFFFFF";
-        private Context context;
+        private const string DEFAULT_HEX_MAIN_COLOR = "#FF9A00";
+        private const string DEFAULT_HEX_SECONDARY_COLOR = "#BDBDBD";
+        private const string DEFAULT_HEX_TINT_COLOR = "#FFFFFF";
+        private const string DEFAULT_HEX_TEXT_COLOR = "#FFFFFF";
+        private readonly Context context;
         private InitialCenterCircleView initialCenterCircleView;
         private MainCircleView mainCircleView;
         private RightCircleView rightCircleView;
@@ -27,6 +25,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView
         private FinishedFailureView finishedFailureView;
         private PercentIndicatorView percentIndicatorView;
         private animator.ViewAnimator viewAnimator;
+        private IAnimationListener animationListener;
         private bool startAnimationIndeterminate;
         private bool startAnimationDeterminate;
         private bool stopAnimationOk;
@@ -45,16 +44,16 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView
         public AnimatedCircleLoadingView(Context context, IAttributeSet attrs) : base(context, attrs)
         {
             this.context = context;
-            initAttributes(attrs);
+            InitAttributes(attrs);
         }
 
         public AnimatedCircleLoadingView(Context context, IAttributeSet attrs, int defStyleAttr) : base(context, attrs, defStyleAttr)
         {
             this.context = context;
-            initAttributes(attrs);
+            InitAttributes(attrs);
         }
 
-        private void initAttributes(IAttributeSet attrs)
+        private void InitAttributes(IAttributeSet attrs)
         {
             TypedArray attributes =
                 Context.ObtainStyledAttributes(attrs,Resource.Styleable.AnimatedCircleLoadingView);
@@ -76,32 +75,32 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView
         protected override void OnSizeChanged(int w, int h, int oldw, int oldh)
         {
             base.OnSizeChanged(w, h, oldw, oldh);
-            init();
-            startAnimation();
+            Init();
+            StartAnimation();
         }
 
-        private void startAnimation()
+        private void StartAnimation()
         {
             if (Width != 0 && Height != 0)
             {
                 if (startAnimationIndeterminate)
                 {
-                    viewAnimator.startAnimator();
+                    viewAnimator.StartAnimator();
                     startAnimationIndeterminate = false;
                 }
                 if (startAnimationDeterminate)
                 {
                     AddView(percentIndicatorView);
-                    viewAnimator.startAnimator();
+                    viewAnimator.StartAnimator();
                     startAnimationDeterminate = false;
                 }
                 if (stopAnimationOk)
                 {
-                    stopOk();
+                    StopOk();
                 }
                 if (stopAnimationFailure)
                 {
-                    stopFailure();
+                    StopFailure();
                 }
             }
         }
@@ -111,14 +110,14 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView
             base.OnMeasure(widthMeasureSpec, heightMeasureSpec);
         }
 
-        private void init()
+        private void Init()
         {
-            initComponents();
-            addComponentsViews();
-            initAnimatorHelper();
+            InitComponents();
+            AddComponentsViews();
+            InitAnimatorHelper();
         }
 
-        private void initComponents()
+        private void InitComponents()
         {
             int width = Width;
             initialCenterCircleView =
@@ -134,7 +133,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView
             percentIndicatorView = new PercentIndicatorView(context, width, textColor);
         }
 
-        private void addComponentsViews()
+        private void AddComponentsViews()
         {
             AddView(initialCenterCircleView);
             AddView(rightCircleView);
@@ -145,40 +144,40 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView
             AddView(finishedFailureView);
         }
 
-        private void initAnimatorHelper()
+        private void InitAnimatorHelper()
         {
             viewAnimator = new animator.ViewAnimator();
-            viewAnimator.setAnimationListener(this);
-            viewAnimator.setComponentViewAnimations(initialCenterCircleView, rightCircleView, sideArcsView,
+            viewAnimator.SetAnimationListener(this.animationListener);
+            viewAnimator.SetComponentViewAnimations(initialCenterCircleView, rightCircleView, sideArcsView,
                 topCircleBorderView, mainCircleView, finishedOkView, finishedFailureView,
                 percentIndicatorView);
         }
 
-        public void startIndeterminate()
+        public void StartIndeterminate()
         {
             startAnimationIndeterminate = true;
-            startAnimation();
+            StartAnimation();
         }
 
-        public void startDeterminate()
+        public void StartDeterminate()
         {
             startAnimationDeterminate = true;
-            startAnimation();
+            StartAnimation();
         }
 
-        public void setPercent(int percent)
+        public void SetPercent(int percent)
         {
             if (percentIndicatorView != null)
             {
-                percentIndicatorView.setPercent(percent);
+                percentIndicatorView.SetPercent(percent);
                 if (percent == 100)
                 {
-                    viewAnimator.finishOk();
+                    viewAnimator.FinishOk();
                 }
             }
         }
 
-        public void stopOk()
+        public void StopOk()
         {
             if (viewAnimator == null)
             {
@@ -186,11 +185,11 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView
             }
             else
             {
-                viewAnimator.finishOk();
+                viewAnimator.FinishOk();
             }
         }
 
-        public void stopFailure()
+        public void StopFailure()
         {
             if (viewAnimator == null)
             {
@@ -198,22 +197,17 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView
             }
             else
             {
-                viewAnimator.finishFailure();
+                viewAnimator.FinishFailure();
             }
         }
 
-        public void resetLoading()
+        public void ResetLoading()
         {
             if (viewAnimator != null)
             {
-                viewAnimator.resetAnimator();
+                viewAnimator.ResetAnimator();
             }
-            setPercent(0);
-        }
-
-        public void setAnimationListener(IAnimationListener animationListener)
-        {
-            this.animationListener = animationListener;
+            SetPercent(0);
         }
     }
 }

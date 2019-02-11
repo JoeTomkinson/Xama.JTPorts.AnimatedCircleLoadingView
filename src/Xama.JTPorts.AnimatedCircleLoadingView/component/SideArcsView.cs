@@ -8,12 +8,12 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
 {
     class SideArcsView : ComponentViewAnimation
     {
-        private static int MIN_RESIZE_ANGLE = 8;
-        private static int MAX_RESIZE_ANGLE = 45;
-        private static int INITIAL_LEFT_ARC_START_ANGLE = 100;
-        private static int INITIAL_RIGHT_ARC_START_ANGLE = 80;
-        private static int MIN_START_ANGLE = 0;
-        private static int MAX_START_ANGLE = 165;
+        private const int MIN_RESIZE_ANGLE = 8;
+        private const int MAX_RESIZE_ANGLE = 45;
+        private const int INITIAL_LEFT_ARC_START_ANGLE = 100;
+        private const int INITIAL_RIGHT_ARC_START_ANGLE = 80;
+        private const int MIN_START_ANGLE = 0;
+        private const int MAX_START_ANGLE = 165;
         private int startLeftArcAngle = INITIAL_LEFT_ARC_START_ANGLE;
         private int startRightArcAngle = INITIAL_RIGHT_ARC_START_ANGLE;
         private Paint paint;
@@ -22,17 +22,17 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
 
         public SideArcsView(Context context, int parentWidth, int mainColor, int secondaryColor) : base(context, parentWidth, mainColor, secondaryColor)
         {
-            init();
+            Init();
         }
 
-        private void init()
+        private void Init()
         {
-            initPaint();
+            InitPaint();
             arcAngle = MAX_RESIZE_ANGLE;
-            initOval();
+            InitOval();
         }
 
-        private void initPaint()
+        private void InitPaint()
         {
             paint = new Paint();
             paint.SetColorFilter(mainColor);
@@ -41,7 +41,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             paint.AntiAlias = (true);
         }
 
-        private void initOval()
+        private void InitOval()
         {
             float padding = paint.StrokeWidth / 2;
             oval = new RectF();
@@ -51,16 +51,16 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
         protected override void OnDraw(Canvas canvas)
         {
             base.OnDraw(canvas);
-            drawArcs(canvas);
+            DrawArcs(canvas);
         }
 
-        private void drawArcs(Canvas canvas)
+        private void DrawArcs(Canvas canvas)
         {
             canvas.DrawArc(oval, startLeftArcAngle, arcAngle, false, paint);
             canvas.DrawArc(oval, startRightArcAngle, -arcAngle, false, paint);
         }
 
-        public void startRotateAnimation()
+        public void StartRotateAnimation()
         {
             ValueAnimator valueAnimator = ValueAnimator.OfInt(MIN_START_ANGLE, MAX_START_ANGLE);
             valueAnimator.SetInterpolator(new DecelerateInterpolator());
@@ -74,7 +74,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             valueAnimator.Start();
         }
 
-        public void startResizeDownAnimation()
+        public void StartResizeDownAnimation()
         {
             ValueAnimator valueAnimator = ValueAnimator.OfInt(MAX_RESIZE_ANGLE, MIN_RESIZE_ANGLE);
             valueAnimator.SetInterpolator(new DecelerateInterpolator());
@@ -87,7 +87,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             
             valueAnimator.AnimationEnd += (s, e) =>
             {
-                setState(AnimationState.SIDE_ARCS_RESIZED_TOP);
+                SetState(AnimationState.SideArcsResizedTops);
             };
             valueAnimator.Start();
         }

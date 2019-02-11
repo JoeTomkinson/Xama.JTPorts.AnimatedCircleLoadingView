@@ -1,6 +1,7 @@
 ﻿using Xama.JTPorts.AnimatedCircleLoadingView.component;
 using Xama.JTPorts.AnimatedCircleLoadingView.component.finish;
 using Xama.JTPorts.AnimatedCircleLoadingView.component.interfaces;
+using Xama.JTPorts.AnimatedCircleLoadingView.interfaces;
 
 namespace Xama.JTPorts.AnimatedCircleLoadingView.animator
 {
@@ -16,9 +17,9 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.animator
         private PercentIndicatorView percentIndicatorView;
         private AnimationState finishedState;
         private bool animatorReset;
-        private AnimatedCircleLoadingView.AnimationListener animationListener;
+        private IAnimationListener animationListener;
 
-        public void setComponentViewAnimations(InitialCenterCircleView initialCenterCircleView,
+        public void SetComponentViewAnimations(InitialCenterCircleView initialCenterCircleView,
       RightCircleView rightCircleView, SideArcsView sideArcsView,
       TopCircleBorderView topCircleBorderView, MainCircleView mainCircleView,
       FinishedOKView finishedOkCircleView, FinishedFailureView finishedFailureView,
@@ -32,59 +33,59 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.animator
             this.finishedOkView = finishedOkCircleView;
             this.finishedFailureView = finishedFailureView;
             this.percentIndicatorView = percentIndicatorView;
-            initListeners();
+            InitListeners();
         }
 
-        private void initListeners()
+        private void InitListeners()
         {
-            initialCenterCircleView.setStateListener(this);
-            rightCircleView.setStateListener(this);
-            sideArcsView.setStateListener(this);
-            topCircleBorderView.setStateListener(this);
-            mainCircleView.setStateListener(this);
-            finishedOkView.setStateListener(this);
-            finishedFailureView.setStateListener(this);
+            initialCenterCircleView.SetStateListener(this);
+            rightCircleView.SetStateListener(this);
+            sideArcsView.SetStateListener(this);
+            topCircleBorderView.SetStateListener(this);
+            mainCircleView.SetStateListener(this);
+            finishedOkView.SetStateListener(this);
+            finishedFailureView.SetStateListener(this);
         }
 
-        public void startAnimator()
+        public void StartAnimator()
         {
-            finishedState =  AnimationState.NONE;
-            initialCenterCircleView.showView();
-            initialCenterCircleView.startTranslateTopAnimation();
-            initialCenterCircleView.startScaleAnimation();
-            rightCircleView.showView();
-            rightCircleView.startSecondaryCircleAnimation();
+            finishedState =  AnimationState.NullAnimation;
+            initialCenterCircleView.ShowView();
+            initialCenterCircleView.StartTranslateTopAnimation();
+            initialCenterCircleView.StartScaleAnimation();
+            rightCircleView.ShowView();
+            rightCircleView.StartSecondaryCircleAnimation();
         }
 
-        public void resetAnimator()
+        public void ResetAnimator()
         {
-            initialCenterCircleView.hideView();
-            rightCircleView.hideView();
-            sideArcsView.hideView();
-            topCircleBorderView.hideView();
-            mainCircleView.hideView();
-            finishedOkView.hideView();
-            finishedFailureView.hideView();
+            initialCenterCircleView.HideView();
+            rightCircleView.HideView();
+            sideArcsView.HideView();
+            topCircleBorderView.HideView();
+            mainCircleView.HideView();
+            finishedOkView.HideView();
+            finishedFailureView.HideView();
             animatorReset = true;
-            startAnimator();
+            StartAnimator();
         }
 
-        public void finishOk()
+        public void FinishOk()
         {
-            finishedState = AnimationState.FINISHED_OK;
+            finishedState = AnimationState.FinishedOk;
         }
 
-        public void finishFailure()
+        public void FinishFailure()
         {
-            finishedState = AnimationState.FINISHED_FAILURE;
+            finishedState = AnimationState.FinishedFailure;
         }
 
-        public void setAnimationListener(AnimatedCircleLoadingView.AnimationListener animationListener)
+        public void SetAnimationListener(IAnimationListener animationListener)
         {
             this.animationListener = animationListener;
         }
         
-        public void onStateChanged(AnimationState state)
+        public void OnStateChanged(AnimationState state)
         {
             if (animatorReset)
             {
@@ -94,32 +95,32 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.animator
             {
                 switch (state)
                 {
-                    case AnimationState.MAIN_CIRCLE_TRANSLATED_TOP:
-                        onMainCircleTranslatedTop();
+                    case AnimationState.MainCircleTranslatedTop:
+                        OnMainCircleTranslatedTop();
                         break;
-                    case AnimationState.MAIN_CIRCLE_SCALED_DISAPPEAR:
-                        onMainCircleScaledDisappear();
+                    case AnimationState.MainCircleScaledDisappear:
+                        OnMainCircleScaledDisappear();
                         break;
-                    case AnimationState.MAIN_CIRCLE_FILLED_TOP:
-                        onMainCircleFilledTop();
+                    case AnimationState.MainCircleFilledTop:
+                        OnMainCircleFilledTop();
                         break;
-                    case AnimationState.SIDE_ARCS_RESIZED_TOP:
-                        onSideArcsResizedTop();
+                    case AnimationState.SideArcsResizedTops:
+                        OnSideArcsResizedTop();
                         break;
-                    case AnimationState.MAIN_CIRCLE_DRAWN_TOP:
-                        onMainCircleDrawnTop();
+                    case AnimationState.MainCircleDrawnTop:
+                        OnMainCircleDrawnTop();
                         break;
-                    case AnimationState.FINISHED_OK:
-                        onFinished(state);
+                    case AnimationState.FinishedOk:
+                        OnFinished(state);
                         break;
-                    case AnimationState.FINISHED_FAILURE:
-                        onFinished(state);
+                    case AnimationState.FinishedFailure:
+                        OnFinished(state);
                         break;
-                    case AnimationState.MAIN_CIRCLE_TRANSLATED_CENTER:
-                        onMainCircleTranslatedCenter();
+                    case AnimationState.MainCircleTranslatedCenter:
+                        OnMainCircleTranslatedCenter();
                         break;
-                    case AnimationState.ANIMATION_END:
-                        onAnimationEnd();
+                    case AnimationState.AnimationEnd:
+                        OnAnimationEnd();
                         break;
                     default:
                         break;
@@ -127,85 +128,82 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.animator
             }
         }
 
-        private void onMainCircleTranslatedTop()
+        private void OnMainCircleTranslatedTop()
         {
-            initialCenterCircleView.startTranslateBottomAnimation();
-            initialCenterCircleView.startScaleDisappear();
+            initialCenterCircleView.StartTranslateBottomAnimation();
+            initialCenterCircleView.StartScaleDisappear();
         }
 
-        private void onMainCircleScaledDisappear()
+        private void OnMainCircleScaledDisappear()
         {
-            initialCenterCircleView.hideView();
-            sideArcsView.showView();
-            sideArcsView.startRotateAnimation();
-            sideArcsView.startResizeDownAnimation();
+            initialCenterCircleView.HideView();
+            sideArcsView.ShowView();
+            sideArcsView.StartRotateAnimation();
+            sideArcsView.StartResizeDownAnimation();
         }
 
-        private void onSideArcsResizedTop()
+        private void OnSideArcsResizedTop()
         {
-            topCircleBorderView.showView();
-            topCircleBorderView.startDrawCircleAnimation();
-            sideArcsView.hideView();
+            topCircleBorderView.ShowView();
+            topCircleBorderView.StartDrawCircleAnimation();
+            sideArcsView.HideView();
         }
 
-        private void onMainCircleDrawnTop()
+        private void OnMainCircleDrawnTop()
         {
-            mainCircleView.showView();
-            mainCircleView.startFillCircleAnimation();
+            mainCircleView.ShowView();
+            mainCircleView.StartFillCircleAnimation();
         }
 
-        private void onMainCircleFilledTop()
+        private void OnMainCircleFilledTop()
         {
-            if (isAnimationFinished())
+            if (IsAnimationFinished)
             {
-                onStateChanged(finishedState);
-                percentIndicatorView.startAlphaAnimation();
+                OnStateChanged(finishedState);
+                percentIndicatorView.StartAlphaAnimation();
             }
             else
             {
-                topCircleBorderView.hideView();
-                mainCircleView.hideView();
-                initialCenterCircleView.showView();
-                initialCenterCircleView.startTranslateBottomAnimation();
-                initialCenterCircleView.startScaleDisappear();
+                topCircleBorderView.HideView();
+                mainCircleView.HideView();
+                initialCenterCircleView.ShowView();
+                initialCenterCircleView.StartTranslateBottomAnimation();
+                initialCenterCircleView.StartScaleDisappear();
             }
         }
 
-        private bool isAnimationFinished()
-        {
-            return finishedState !=  AnimationState.NONE;
-        }
+        private bool IsAnimationFinished => finishedState != AnimationState.NullAnimation;
 
-        private void onFinished(AnimationState state)
+        private void OnFinished(AnimationState state)
         {
-            topCircleBorderView.hideView();
-            mainCircleView.hideView();
+            topCircleBorderView.HideView();
+            mainCircleView.HideView();
             finishedState = state;
-            initialCenterCircleView.showView();
-            initialCenterCircleView.startTranslateCenterAnimation();
+            initialCenterCircleView.ShowView();
+            initialCenterCircleView.StartTranslateCenterAnimation();
         }
 
-        private void onMainCircleTranslatedCenter()
+        private void OnMainCircleTranslatedCenter()
         {
-            if (finishedState == AnimationState.FINISHED_OK)
+            if (finishedState == AnimationState.FinishedOk)
             {
-                finishedOkView.showView();
-                finishedOkView.startScaleAnimation();
+                finishedOkView.ShowView();
+                finishedOkView.StartScaleAnimation();
             }
             else
             {
-                finishedFailureView.showView();
-                finishedFailureView.startScaleAnimation();
+                finishedFailureView.ShowView();
+                finishedFailureView.StartScaleAnimation();
             }
-            initialCenterCircleView.hideView();
+            initialCenterCircleView.HideView();
         }
 
-        private void onAnimationEnd()
+        private void OnAnimationEnd()
         {
             if (animationListener != null)
             {
-                bool success = finishedState == AnimationState.FINISHED_OK;
-                animationListener.onAnimationEnd(success);
+                bool success = finishedState == AnimationState.FinishedOk;
+                animationListener.OnAnimationEnd(success);
             }
         }
     }

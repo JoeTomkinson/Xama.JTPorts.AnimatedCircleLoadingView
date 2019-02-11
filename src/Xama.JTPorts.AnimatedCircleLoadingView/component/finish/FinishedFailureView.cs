@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -18,19 +19,10 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component.finish
         {
         }
 
-        protected override int getDrawable()
-        {
-            return Resource.Drawable.ic_failure_mark;
-        }
+        protected override int Drawable { get => Resource.Drawable.ic_failure_mark; }
 
-        protected override int getDrawableTintColor()
-        {
-            return tintColor;
-        }
+        protected override int DrawableTintColor { get => tintColor;}
 
-        protected override int getCircleColor()
-        {
-            return secondaryColor;
-        }
+        protected override Color CircleColor { get => secondaryColor;}
     }
 }

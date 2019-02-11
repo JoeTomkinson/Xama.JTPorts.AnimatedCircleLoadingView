@@ -1,4 +1,5 @@
 ﻿using Android.Content;
+using Android.Graphics;
 
 namespace Xama.JTPorts.AnimatedCircleLoadingView.component.finish
 {
@@ -8,19 +9,8 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component.finish
         {
         }
 
-        protected override int getCircleColor()
-        {
-            return Resource.Drawable.ic_checked_mark;
-        }
-
-        protected override int getDrawable()
-        {
-            return tintColor;
-        }
-
-        protected override int getDrawableTintColor()
-        {
-            return mainColor;
-        }
+        protected override int Drawable { get => Resource.Drawable.ic_checked_mark; }
+        protected override int DrawableTintColor { get => tintColor; }
+        protected override Color CircleColor { get => mainColor; }
     }
 }

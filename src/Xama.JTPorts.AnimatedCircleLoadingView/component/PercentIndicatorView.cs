@@ -8,17 +8,17 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
 {
     class PercentIndicatorView : TextView
     {
-        private int parentWidth;
-        private int textColor = Color.White;
+        private readonly int parentWidth;
+        private readonly int textColor = Color.White;
 
         public PercentIndicatorView(Context context, int parentWidth, int textColor) : base(context)
         {
             this.parentWidth = parentWidth;
             this.textColor = textColor;
-            init();
+            Init();
         }
 
-        private void init()
+        private void Init()
         {
             int textSize = (35 * parentWidth) / 700;
             SetTextSize(Android.Util.ComplexUnitType.Pt, textSize);
@@ -27,16 +27,18 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             Alpha = 0.8f;
         }
 
-        public void setPercent(int percent)
+        public void SetPercent(int percent)
         {
             Text = percent.ToString() + "%";
         }
 
-        public void startAlphaAnimation()
+        public void StartAlphaAnimation()
         {
-            AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
-            alphaAnimation.Duration = 700;
-            alphaAnimation.FillAfter = true;
+            AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0)
+            {
+                Duration = 700,
+                FillAfter = true
+            };
             StartAnimation(alphaAnimation);
         }
     }

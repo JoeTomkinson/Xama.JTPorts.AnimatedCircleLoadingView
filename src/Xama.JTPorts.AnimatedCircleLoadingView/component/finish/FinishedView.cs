@@ -1,12 +1,13 @@
 ﻿using Android.Animation;
 using Android.Content;
 using Android.Graphics;
+using Xama.JTPorts.AnimatedCircleLoadingView.animator;
 
 namespace Xama.JTPorts.AnimatedCircleLoadingView.component.finish
 {
     abstract class FinishedView : ComponentViewAnimation
     {
-        private static int MIN_IMAGE_SIZE = 1;
+        private static int minimumImageSize = 1;
         protected int tintColor;
         private int maxImageSize;
         private int circleMaxRadius;
@@ -17,51 +18,51 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component.finish
         public FinishedView(Context context, int parentWidth, int mainColor, int secondaryColor, int tintColor) : base(context, parentWidth, mainColor, secondaryColor)
         {
             this.tintColor = tintColor;
-            init();
+            Init();
         }
 
-        private void init()
+        private void Init()
         {
             maxImageSize = (140 * parentWidth) / 700;
             circleMaxRadius = (140 * parentWidth) / 700;
             currentCircleRadius = circleRadius;
-            imageSize = MIN_IMAGE_SIZE;
-            originalFinishedBitmap = BitmapFactory.DecodeResource(Resources, getDrawable());
+            imageSize = minimumImageSize;
+            originalFinishedBitmap = BitmapFactory.DecodeResource(Resources, Drawable);
         }
 
         protected override void OnDraw(Canvas canvas)
         {
             base.OnDraw(canvas);
-            drawCircle(canvas);
-            drawCheckedMark(canvas);
+            DrawCircle(canvas);
+            DrawCheckedMark(canvas);
         }
 
-        private void drawCheckedMark(Canvas canvas)
+        private void DrawCheckedMark(Canvas canvas)
         {
             Paint paint = new Paint();
-            paint.SetColorFilter(new LightingColorFilter(getDrawableTintColor(), 0));
+            paint.SetColorFilter(new LightingColorFilter(DrawableTintColor, 0));
 
             Bitmap bitmap = Bitmap.CreateScaledBitmap(originalFinishedBitmap, imageSize, imageSize, true);
             canvas.DrawBitmap(bitmap, parentCenter - bitmap.Width / 2,
                 parentCenter - bitmap.Height / 2, paint);
         }
 
-        public void drawCircle(Canvas canvas)
+        public void DrawCircle(Canvas canvas)
         {
             Paint paint = new Paint();
             paint.SetStyle(Paint.Style.FillAndStroke);
-            paint.Color = (getCircleColor());
+            paint.Color = (CircleColor);
             paint.AntiAlias = (true);
             canvas.DrawCircle(parentCenter, parentCenter, currentCircleRadius, paint);
         }
 
-        public void startScaleAnimation()
+        public void StartScaleAnimation()
         {
-            startScaleCircleAnimation();
-            startScaleImageAnimation();
+            StartScaleCircleAnimation();
+            StartScaleImageAnimation();
         }
 
-        private void startScaleCircleAnimation()
+        private void StartScaleCircleAnimation()
         {
             ValueAnimator valueCircleAnimator =
                 ValueAnimator.OfFloat(circleRadius + strokeWidth / 2, circleMaxRadius);
@@ -74,9 +75,9 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component.finish
             valueCircleAnimator.Start();
         }
 
-        private void startScaleImageAnimation()
+        private void StartScaleImageAnimation()
         {
-            ValueAnimator valueImageAnimator = ValueAnimator.OfInt(MIN_IMAGE_SIZE, maxImageSize);
+            ValueAnimator valueImageAnimator = ValueAnimator.OfInt(minimumImageSize, maxImageSize);
             valueImageAnimator.SetDuration(1000);
             valueImageAnimator.Update += (s, e) =>
             {
@@ -85,15 +86,15 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component.finish
             };
             valueImageAnimator.AnimationEnd += (s, e) =>
             {
-                setState(AnimationState.ANIMATION_END);
+                SetState(AnimationState.AnimationEnd);
             };
             valueImageAnimator.Start();
         }
 
-        protected abstract int getDrawable();
+        protected abstract int Drawable { get; set; }
 
-        protected abstract int getDrawableTintColor();
+        protected abstract int DrawableTintColor { get; set; }
 
-        protected abstract int getCircleColor();
+        protected abstract Color CircleColor { get; set; }
     }
 }
