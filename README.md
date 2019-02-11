@@ -10,7 +10,7 @@ C# Port of the Android Java library [AnimatedCircleLoadingView](https://github.c
 
 - [x] Ensure Interfaces are implemented as per OOP standards.
 
-- [x] Apply standard capitilisations across the library as per .Net guidelines.
+- [x] Apply standard capitalizations across the library as per .Net guidelines.
 
 - [ ] Replace android 'listeners' with events.
 
