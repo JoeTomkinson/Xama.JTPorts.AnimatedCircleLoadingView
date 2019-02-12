@@ -24,17 +24,21 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView
         private FinishedOKView finishedOkView;
         private FinishedFailureView finishedFailureView;
         private PercentIndicatorView percentIndicatorView;
+        private NormalTextView normalTextView;
         private animator.ViewAnimator viewAnimator;
         private IAnimationListener animationListener;
         private bool startAnimationIndeterminate;
         private bool startAnimationDeterminate;
         private bool stopAnimationOk;
         private bool stopAnimationFailure;
-        private int mainColor;
-        private int secondaryColor;
-        private int checkMarkTintColor;
-        private int failureMarkTintColor;
-        private int textColor;
+
+        public string TitleText { get; set; }
+        public int? TitleTextSize { get; set; }
+        public int MainColor { get; set; }
+        public int SecondaryColor { get; set; }
+        public int CheckMarkTintColor { get; set; }
+        public int FailureMarkTintColor { get; set; }
+        public int TextColor { get; set; }
 
         public AnimatedCircleLoadingView(Context context) : base(context)
         {
@@ -56,18 +60,18 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView
         private void InitAttributes(IAttributeSet attrs)
         {
             TypedArray attributes =
-                Context.ObtainStyledAttributes(attrs,Resource.Styleable.AnimatedCircleLoadingView);
-            mainColor = attributes.GetColor(Resource.Styleable.AnimatedCircleLoadingView_animCircleLoadingView_mainColor,
+                Context.ObtainStyledAttributes(attrs, Resource.Styleable.AnimatedCircleLoadingView);
+            MainColor = attributes.GetColor(Resource.Styleable.AnimatedCircleLoadingView_animCircleLoadingView_mainColor,
                 Color.ParseColor(DEFAULT_HEX_MAIN_COLOR));
-            secondaryColor = attributes.GetColor(Resource.Styleable.AnimatedCircleLoadingView_animCircleLoadingView_secondaryColor,
+            SecondaryColor = attributes.GetColor(Resource.Styleable.AnimatedCircleLoadingView_animCircleLoadingView_secondaryColor,
                 Color.ParseColor(DEFAULT_HEX_SECONDARY_COLOR));
-            checkMarkTintColor =
+            CheckMarkTintColor =
                 attributes.GetColor(Resource.Styleable.AnimatedCircleLoadingView_animCircleLoadingView_checkMarkTintColor,
                     Color.ParseColor(DEFAULT_HEX_TINT_COLOR));
-            failureMarkTintColor =
+            FailureMarkTintColor =
                 attributes.GetColor(Resource.Styleable.AnimatedCircleLoadingView_animCircleLoadingView_failureMarkTintColor,
                     Color.ParseColor(DEFAULT_HEX_TINT_COLOR));
-            textColor = attributes.GetColor(Resource.Styleable.AnimatedCircleLoadingView_animCircleLoadingView_textColor,
+            TextColor = attributes.GetColor(Resource.Styleable.AnimatedCircleLoadingView_animCircleLoadingView_textColor,
                 Color.ParseColor(DEFAULT_HEX_TEXT_COLOR));
             attributes.Recycle();
         }
@@ -85,6 +89,22 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView
             {
                 if (startAnimationIndeterminate)
                 {
+                    if (!string.IsNullOrEmpty(TitleText))
+                    {
+                        normalTextView = new NormalTextView(context, Width, TextColor);
+                        normalTextView.SetNormalText(TitleText);
+                        if (TitleTextSize == null)
+                        {
+                            normalTextView.TrySetOptimalTextSize(Width);
+                        }
+                        else
+                        {
+                            normalTextView.SetTextSize((int)TitleTextSize);
+                        }
+                       
+                        AddView(normalTextView);
+                    }
+
                     viewAnimator.StartAnimator();
                     startAnimationIndeterminate = false;
                 }
@@ -120,17 +140,14 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView
         private void InitComponents()
         {
             int width = Width;
-            initialCenterCircleView =
-                new InitialCenterCircleView(context, width, mainColor, secondaryColor);
-            rightCircleView = new RightCircleView(context, width, mainColor, secondaryColor);
-            sideArcsView = new SideArcsView(context, width, mainColor, secondaryColor);
-            topCircleBorderView = new TopCircleBorderView(context, width, mainColor, secondaryColor);
-            mainCircleView = new MainCircleView(context, width, mainColor, secondaryColor);
-            finishedOkView =
-                new FinishedOKView(context, width, mainColor, secondaryColor, checkMarkTintColor);
-            finishedFailureView =
-                new FinishedFailureView(context, width, mainColor, secondaryColor, failureMarkTintColor);
-            percentIndicatorView = new PercentIndicatorView(context, width, textColor);
+            initialCenterCircleView = new InitialCenterCircleView(context, width, MainColor, SecondaryColor);
+            rightCircleView = new RightCircleView(context, width, MainColor, SecondaryColor);
+            sideArcsView = new SideArcsView(context, width, MainColor, SecondaryColor);
+            topCircleBorderView = new TopCircleBorderView(context, width, MainColor, SecondaryColor);
+            mainCircleView = new MainCircleView(context, width, MainColor, SecondaryColor);
+            finishedOkView = new FinishedOKView(context, width, MainColor, SecondaryColor, CheckMarkTintColor);
+            finishedFailureView = new FinishedFailureView(context, width, MainColor, SecondaryColor, FailureMarkTintColor);
+            percentIndicatorView = new PercentIndicatorView(context, width, TextColor);
         }
 
         private void AddComponentsViews()

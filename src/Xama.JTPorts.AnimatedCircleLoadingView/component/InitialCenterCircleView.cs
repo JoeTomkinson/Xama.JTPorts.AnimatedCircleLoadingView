@@ -1,6 +1,7 @@
 ﻿using Android.Animation;
 using Android.Content;
 using Android.Graphics;
+using Android.Support.V4.Content;
 using Xama.JTPorts.AnimatedCircleLoadingView.animator;
 
 namespace Xama.JTPorts.AnimatedCircleLoadingView.component
@@ -28,7 +29,8 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
         {
             paint = new Paint();
             paint.SetStyle(Paint.Style.FillAndStroke);
-            paint.Color = Color.ParseColor(mainColor);
+            Color c = new Color(ContextCompat.GetColor(Context, this.mainColor));
+            paint.Color = c;
             paint.AntiAlias = true;
         }
 
@@ -84,7 +86,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             float translationYFrom = -(260 * parentWidth) / 700;
             float translationYTo = (360 * parentWidth) / 700;
             ObjectAnimator translationY = ObjectAnimator.OfFloat(this, "translationY", translationYFrom, translationYTo);
-            translationY.SetDuration(650);
+            translationY.SetDuration(650); 
             translationY.Start();
         }
 
@@ -93,7 +95,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
             float maxScaleSize = (250 * parentWidth) / 700;
             ValueAnimator valueScaleWidthAnimator = ValueAnimator.OfFloat(circleRadius, maxScaleSize);
             valueScaleWidthAnimator.SetDuration(260);
-            valueScaleWidthAnimator.StartDelay = 430;
+            valueScaleWidthAnimator.StartDelay = 530; //430
             valueScaleWidthAnimator.Update += (s, e) =>
             {
                 currentCircleWidth = (float)e.Animation.AnimatedValue;
@@ -109,7 +111,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
 
             ValueAnimator valueScaleHeightAnimator = ValueAnimator.OfFloat(circleRadius, circleRadius / 2);
             valueScaleHeightAnimator.SetDuration(260);
-            valueScaleHeightAnimator.StartDelay = 430;
+            valueScaleHeightAnimator.StartDelay = 430; 
             valueScaleHeightAnimator.Update += (s, e) =>
               {
                   currentCircleHeight = (float)e.Animation.AnimatedValue;

@@ -11,6 +11,6 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component.finish
 
         protected override int Drawable { get => Resource.Drawable.ic_checked_mark; }
         protected override int DrawableTintColor { get => tintColor; }
-        protected override Color CircleColor { get => mainColor; }
+        protected override int CircleColor { get => mainColor; }
     }
 }

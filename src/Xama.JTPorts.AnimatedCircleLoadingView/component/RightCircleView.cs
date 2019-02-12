@@ -1,5 +1,6 @@
 ﻿using Android.Content;
 using Android.Graphics;
+using Android.Support.V4.Content;
 using Android.Views.Animations;
 using Xama.JTPorts.AnimatedCircleLoadingView.animator;
 
@@ -27,7 +28,8 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
         {
             paint = new Paint();
             paint.SetStyle(Paint.Style.Fill);
-            paint.SetColorFilter(secondaryColor);
+            Color c = new Color(ContextCompat.GetColor(Context, this.secondaryColor));
+            paint.Color = c;
             paint.AntiAlias = true;
         }
 

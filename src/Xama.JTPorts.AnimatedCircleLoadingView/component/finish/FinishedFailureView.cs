@@ -23,6 +23,6 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component.finish
 
         protected override int DrawableTintColor { get => tintColor;}
 
-        protected override Color CircleColor { get => secondaryColor;}
+        protected override int CircleColor { get => secondaryColor;}
     }
 }

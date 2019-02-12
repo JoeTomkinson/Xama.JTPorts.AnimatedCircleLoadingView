@@ -7,12 +7,12 @@ using Android.Widget;
 
 namespace Xama.JTPorts.AnimatedCircleLoadingView.component
 {
-    class PercentIndicatorView : TextView
+    class NormalTextView : TextView
     {
         private readonly int parentWidth;
         private readonly int textColor;
 
-        public PercentIndicatorView(Context context, int parentWidth, int textColor) : base(context)
+        public NormalTextView(Context context, int parentWidth, int textColor) : base(context)
         {
             this.parentWidth = parentWidth;
             this.textColor = textColor;
@@ -22,21 +22,24 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
         private void Init()
         {
             int textSize = (35 * parentWidth) / 700;
-            SetTextSize(Android.Util.ComplexUnitType.Pt, textSize);
+            SetTextSize(Android.Util.ComplexUnitType.Dip, textSize);
             Color c = new Color(ContextCompat.GetColor(Context, this.textColor));
             SetTextColor(c);
             Gravity = GravityFlags.Center;
             Alpha = 0.8f;
         }
 
-        public void SetPercent(int percent)
+        public void SetNormalText(string text) => Text = text;
+
+        public void SetTextSize(int textSize)
         {
-            Text = percent.ToString() + "%";
+            SetTextSize(Android.Util.ComplexUnitType.Dip, textSize);
         }
 
-        public void SetNormalText(string text)
+        public void TrySetOptimalTextSize(int parentWidth)
         {
-            Text = text;
+            int textSize = (35 * (parentWidth)) / 700;
+            SetTextSize(Android.Util.ComplexUnitType.Dip, textSize);
         }
 
         public void StartAlphaAnimation()

@@ -1,6 +1,8 @@
 ﻿using Android.Animation;
 using Android.Content;
 using Android.Graphics;
+using Android.Support.V4.Content;
+using Android.Support.V4.Content.Res;
 using Xama.JTPorts.AnimatedCircleLoadingView.animator;
 
 namespace Xama.JTPorts.AnimatedCircleLoadingView.component.finish
@@ -51,7 +53,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component.finish
         {
             Paint paint = new Paint();
             paint.SetStyle(Paint.Style.FillAndStroke);
-            paint.Color = (CircleColor);
+            paint.Color = Resources.GetColor(CircleColor, null);
             paint.AntiAlias = (true);
             canvas.DrawCircle(parentCenter, parentCenter, currentCircleRadius, paint);
         }
@@ -91,10 +93,10 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component.finish
             valueImageAnimator.Start();
         }
 
-        protected abstract int Drawable { get; set; }
+        protected abstract int Drawable { get; }
 
-        protected abstract int DrawableTintColor { get; set; }
+        protected abstract int DrawableTintColor { get; }
 
-        protected abstract Color CircleColor { get; set; }
+        protected abstract int CircleColor { get; }
     }
 }

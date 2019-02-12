@@ -30,7 +30,7 @@ namespace Xama.JTPorts.AnimatedCircleLoadingView.component
         {
             paint = new Paint
             {
-                Color = mainColor,
+                Color = Resources.GetColor(this.secondaryColor, null),
                 StrokeWidth = strokeWidth
             };
             paint.SetStyle(Paint.Style.Stroke);
