@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="Xama.JTPorts.AnimatedCircleLoadingView">
+      <HintPath>lib\Xama.JTPorts.AnimatedCircleLoadingView.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -99,11 +102,9 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Xama.JTPorts.AnimatedCircleLoadingView\Xama.JTPorts.AnimatedCircleLoadingView.csproj">
-      <Project>{aa1f11ac-f6bd-4f78-be7f-206556422da5}</Project>
-      <Name>Xama.JTPorts.AnimatedCircleLoadingView</Name>
-    </ProjectReference>
+    <AndroidResource Include="Resources\drawable\img_ok.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

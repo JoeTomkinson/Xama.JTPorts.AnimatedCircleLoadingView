@@ -12,7 +12,22 @@
     android:id="@+id/circle_loading_view"
     android:layout_width="120dp"
     android:layout_height="120dp"
-    android:layout_centerInParent="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="25dp"
+    android:background="@android:color/transparent"
+    app:animCircleLoadingView_mainColor="@color/colorPrimary"
+    app:animCircleLoadingView_secondaryColor="@color/colorPrimaryDark"
+    app:animCircleLoadingView_textColor="@android:color/white"
+    />
+
+    <Xama.JTPorts.AnimatedCircleLoadingView.AnimatedCircleLoadingView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/circle_loading_view_indeterminate"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    android:layout_marginTop="100dp"
+    android:layout_centerHorizontal="true"
+    android:layout_below="@+id/circle_loading_view"
     android:background="@android:color/transparent"
     app:animCircleLoadingView_mainColor="@color/colorPrimary"
     app:animCircleLoadingView_secondaryColor="@color/colorPrimaryDark"

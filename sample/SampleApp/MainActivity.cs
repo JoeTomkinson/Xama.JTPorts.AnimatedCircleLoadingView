@@ -16,38 +16,28 @@ namespace SampleApp
     public class MainActivity : AppCompatActivity
     {
         private AnimatedCircleLoadingView animatedCircleLoadingView;
+        private AnimatedCircleLoadingView animatedCircleLoadingViewIndeterminate;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
+            animatedCircleLoadingViewIndeterminate = FindViewById<AnimatedCircleLoadingView>(Resource.Id.circle_loading_view_indeterminate);
+            animatedCircleLoadingViewIndeterminate.MainColor = Resource.Color.colorDeterminatePrimary;
+            animatedCircleLoadingViewIndeterminate.SecondaryColor = Resource.Color.colorDeterminateAccent;
+            animatedCircleLoadingViewIndeterminate.TextColor = Resource.Color.colorPrimaryDark;
+            animatedCircleLoadingViewIndeterminate.CheckMarkTintColor = Color.White;
+            animatedCircleLoadingViewIndeterminate.TitleText = "Loading";
+            
             animatedCircleLoadingView = FindViewById<AnimatedCircleLoadingView>(Resource.Id.circle_loading_view);
             animatedCircleLoadingView.MainColor = Resource.Color.colorPrimary;
             animatedCircleLoadingView.SecondaryColor = Resource.Color.colorAccent;
             animatedCircleLoadingView.TextColor = Resource.Color.colorPrimaryDark;
             animatedCircleLoadingView.CheckMarkTintColor = Color.White;
             animatedCircleLoadingView.TitleText = "Loading";
-            animatedCircleLoadingView.StartDeterminate();
 
-            Task.Run(async () => {
-                await Task.Delay(5000);
-                RunOnUiThread(() => {
-                    animatedCircleLoadingView.SetPercent(40);
-                });
-                await Task.Delay(5000);
-                RunOnUiThread(() => {
-                    animatedCircleLoadingView.SetPercent(60);
-                });
-                await Task.Delay(5000);
-                RunOnUiThread(() => {
-                    animatedCircleLoadingView.SetPercent(70);
-                });
-                await Task.Delay(5000);
-                RunOnUiThread(() => {
-                    animatedCircleLoadingView.SetPercent(100);
-                });
-            });
+            initProgressCircles();
 
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
@@ -73,12 +63,29 @@ namespace SampleApp
             return base.OnOptionsItemSelected(item);
         }
 
+        private void initProgressCircles()
+        {
+            animatedCircleLoadingViewIndeterminate.StartIndeterminate();
+            animatedCircleLoadingView.StartDeterminate();
+
+            Task.Run(async () => {
+                await Task.Delay(1000);
+                for (int i = 1; i <= 100; i++)
+                {
+                    await Task.Delay(100);
+                    RunOnUiThread(() => {
+                        animatedCircleLoadingView.SetPercent(i);
+                    });
+                }
+            });
+        }
+
         private void FabOnClick(object sender, EventArgs eventArgs)
         {
+            animatedCircleLoadingViewIndeterminate.StopOk();
             animatedCircleLoadingView.StopOk();
             View view = (View) sender;
-            Snackbar.Make(view, "Replace with your own action", Snackbar.LengthLong)
-                .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+            Snackbar.Make(view, "Stopped Progress with OK status.", Snackbar.LengthLong).SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
         }
 	}
 }
