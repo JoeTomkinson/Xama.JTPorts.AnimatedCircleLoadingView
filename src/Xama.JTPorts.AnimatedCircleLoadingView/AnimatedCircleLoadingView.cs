@@ -5,7 +5,7 @@ using Android.Util;
 using Android.Widget;
 using Xama.JTPorts.AnimatedCircleLoadingView.component;
 using Xama.JTPorts.AnimatedCircleLoadingView.component.finish;
-using IAnimationListener = Xama.JTPorts.AnimatedCircleLoadingView.interfaces.IAnimationListener;
+using Xama.JTPorts.AnimatedCircleLoadingView.interfaces;
 
 namespace Xama.JTPorts.AnimatedCircleLoadingView
 {
