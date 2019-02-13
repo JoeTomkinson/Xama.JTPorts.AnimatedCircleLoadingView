@@ -4,6 +4,9 @@
 
 C# Port of the Android Java library [AnimatedCircleLoadingView](https://github.com/jlmd/AnimatedCircleLoadingView) by [jlmd](https://github.com/jlmd)
 
+> _A determiante/indetermiante loading view animation.
+> Based on [android-watch-loading-animation](http://www.materialup.com/posts/android-watch-loading-animation) by [Nils Banner]> > (http://www.materialup.com/NilsMedia)._
+
 ### Namespace: Xama.JTPorts.AnimatedCircleLoadingView
 
 ## Outstanding Tasks:
