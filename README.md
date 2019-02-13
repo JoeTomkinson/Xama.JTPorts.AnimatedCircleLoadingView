@@ -41,7 +41,7 @@ Create control in your xml layout:
 ```
 ### Indeterminate Progress
 
-Get control and assign the colors, this is important as currently the control can't infer these if not provided
+Get control and assign the colors, **this is important** as currently the control can't infer these if not provided
 
 ```cs
 AnimatedCircleLoadingView animatedCircleLoadingView = FindViewById<AnimatedCircleLoadingView>(Resource.Id.circle_loading_view_indeterminate);
