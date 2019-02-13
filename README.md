@@ -12,9 +12,11 @@ C# Port of the Android Java library [AnimatedCircleLoadingView](https://github.c
 
 - [x] Apply standard capitalizations across the library as per .Net guidelines.
 
+- [ ] Fix xml attributes
+
 - [ ] Replace android 'listeners' with events.
 
-- [ ] Replace colour implementations to match Xamarin.Android property requirements.
+- [x] Replace colour implementations to match Xamarin.Android property requirements.
 
 - [ ] Ensure that non-optional parameters are all auto-populated if not supplied for the OO implementation.
 
@@ -24,4 +26,4 @@ C# Port of the Android Java library [AnimatedCircleLoadingView](https://github.c
 
 - [ ] Set-up Travis-CI and make sure it works against the class library.
 
-- [ ] Fill out the Wiki if required, otherwise pad out readme with basic usage guidelines.
+- [ ] Fill basic usage information.
