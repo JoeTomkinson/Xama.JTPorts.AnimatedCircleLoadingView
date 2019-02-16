@@ -4,6 +4,10 @@
 
 C# Port of the Android Java library [AnimatedCircleLoadingView](https://github.com/jlmd/AnimatedCircleLoadingView) by [jlmd](https://github.com/jlmd)
 
+> _A determinate/indeterminate loading view animation.
+> Based on [android-watch-loading-animation](http://www.materialup.com/posts/android-watch-loading-animation) 
+> by [Nils Banner](http://www.materialup.com/NilsMedia)_
+
 ### Namespace: Xama.JTPorts.AnimatedCircleLoadingView
 
 ## Outstanding Tasks:
@@ -12,9 +16,11 @@ C# Port of the Android Java library [AnimatedCircleLoadingView](https://github.c
 
 - [x] Apply standard capitalizations across the library as per .Net guidelines.
 
+- [ ] Fix xml attributes
+
 - [ ] Replace android 'listeners' with events.
 
-- [ ] Replace colour implementations to match Xamarin.Android property requirements.
+- [x] Replace colour implementations to match Xamarin.Android property requirements.
 
 - [ ] Ensure that non-optional parameters are all auto-populated if not supplied for the OO implementation.
 
@@ -24,4 +30,81 @@ C# Port of the Android Java library [AnimatedCircleLoadingView](https://github.c
 
 - [ ] Set-up Travis-CI and make sure it works against the class library.
 
-- [ ] Fill out the Wiki if required, otherwise pad out readme with basic usage guidelines.
+- [x] Fill basic usage information.
+
+## Basic Usage:
+
+Create control in your xml layout:
+
+```cs
+<Xama.JTPorts.AnimatedCircleLoadingView.AnimatedCircleLoadingView
+  android:id="@+id/circle_loading_view_indeterminate"
+  android:layout_width="250dp"
+  android:layout_height="250dp"
+  android:background="@color/white" />
+```
+### Indeterminate Progress
+
+Get control and assign the colors, **this is important** as currently the control can't infer these if not provided
+
+```cs
+AnimatedCircleLoadingView animatedCircleLoadingView = FindViewById<AnimatedCircleLoadingView>(Resource.Id.circle_loading_view_indeterminate);
+
+animatedCircleLoadingView.MainColor = Resource.Color.colorPrimaryDark;
+animatedCircleLoadingView.SecondaryColor = Resource.Color.risualOrange;
+animatedCircleLoadingView.TextColor = Resource.Color.colorAccent;
+animatedCircleLoadingView.CheckMarkTintColor = Color.White;
+```
+
+You can define a center body of text to sit inside of the loading view if needed
+
+```cs
+animatedCircleLoadingView.TitleText = "Loading";
+```
+Then simply start the animation
+
+```cs
+animatedCircleLoadingView.StartIndeterminate();
+```
+
+### Determinate Progress
+
+Get control and assign the colors, this is important as currently the control can't infer these if not provided
+
+```cs
+AnimatedCircleLoadingView animatedCircleLoadingView = FindViewById<AnimatedCircleLoadingView>(Resource.Id.circle_loading_view_indeterminate);
+
+animatedCircleLoadingView.MainColor = Resource.Color.colorPrimaryDark;
+animatedCircleLoadingView.SecondaryColor = Resource.Color.risualOrange;
+animatedCircleLoadingView.TextColor = Resource.Color.colorAccent;
+animatedCircleLoadingView.CheckMarkTintColor = Color.White;
+```
+
+Start the animation
+
+```cs
+animatedCircleLoadingView.StartDeterminate();
+```
+
+Then simply set the percentage using this method (takes an integer value)
+
+```cs
+animatedCircleLoadingView.SetPercentage(50);
+```
+
+Currently when the control hits 100 percent it automatically adds the FinishedOK view, but you can also fire this manually.
+
+```cs
+animatedCircleLoadingView.StopOk();
+```
+
+or the failed view
+
+```cs
+animatedCircleLoadingView.StopFailure();
+```
+
+# Useful?
+<a href="https://www.buymeacoffee.com/digitalsa1nt" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+
+ _You know, only if you want to_
