@@ -10,6 +10,8 @@ C# Port of the Android Java library [AnimatedCircleLoadingView](https://github.c
 
 ### Namespace: Xama.JTPorts.AnimatedCircleLoadingView
 
+![!gif](https://github.com/DigitalSa1nt/Xama.JTPorts.AnimatedCircleLoadingView/blob/master/images/20190216_225349.gif?raw=true)
+
 ## Outstanding Tasks:
 
 - [x] Ensure Interfaces are implemented as per OOP standards.
