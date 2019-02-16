@@ -70,7 +70,7 @@ namespace SampleApp
 
             Task.Run(async () => {
                 await Task.Delay(1000);
-                for (int i = 1; i <= 100; i++)
+                for (int i = 1; i < 100; i++)
                 {
                     await Task.Delay(100);
                     RunOnUiThread(() => {
