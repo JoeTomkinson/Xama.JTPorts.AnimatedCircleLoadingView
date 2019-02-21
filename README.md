@@ -34,6 +34,10 @@ C# Port of the Android Java library [AnimatedCircleLoadingView](https://github.c
 
 - [x] Fill basic usage information.
 
+# How to Install
+
+At the moment, until I create the nuget package you would need to download the src code, compile and build it, then simply reference the DLL in your Xamarin.Android Project. Or alternatively you could add the project as a project within your solution if you plan on adjusting any of the code for your own uses.
+
 ## Basic Usage:
 
 Create control in your xml layout:
