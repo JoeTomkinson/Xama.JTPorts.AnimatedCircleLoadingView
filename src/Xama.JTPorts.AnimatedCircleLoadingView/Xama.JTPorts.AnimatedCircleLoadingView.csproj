@@ -16,7 +16,19 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <PackageId>Xama.JTPorts.AnimatedCircleLoadingView</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Description>A determinate/indeterminate loading view animation. Based on android-watch-loading-animation by Nils Banner</Description>
+    <Authors>Joe Tomkinson</Authors>
+    <Title>Xama.JTPorts.AnimatedCircleLoadingView</Title>
+    <Summary>A determinate/indeterminate loading view animation. Based on android-watch-loading-animation by Nils Banner</Summary>
+    <Owners>Joe Tomkinson</Owners>
+    <Copyright>2020</Copyright>
+    <PackageProjectUrl>https://github.com/DigitalSa1nt/Xama.JTPorts.AnimatedCircleLoadingView</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/DigitalSa1nt/Xama.JTPorts.AnimatedCircleLoadingView/blob/master/LICENSE</PackageLicenseUrl>
+    <NeutralLanguage>enGB</NeutralLanguage>
+    <PackageReleaseNotes>1.0.0 - Initial NuGet Release of library.</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -70,12 +82,13 @@
     <None Include="Resources\AboutResources.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="Xamarin.AndroidX.AppCompat">
+      <Version>1.1.0</Version>
+    </PackageReference>
+  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_checked_mark.png" />
   </ItemGroup>
@@ -84,6 +97,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\attrs.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

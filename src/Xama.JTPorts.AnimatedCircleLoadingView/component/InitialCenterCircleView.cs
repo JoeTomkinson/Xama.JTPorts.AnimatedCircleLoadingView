@@ -1,7 +1,7 @@
 ﻿using Android.Animation;
 using Android.Content;
 using Android.Graphics;
-using Android.Support.V4.Content;
+using AndroidX.Core.Content;
 using Xama.JTPorts.AnimatedCircleLoadingView.animator;
 
 namespace Xama.JTPorts.AnimatedCircleLoadingView.component
