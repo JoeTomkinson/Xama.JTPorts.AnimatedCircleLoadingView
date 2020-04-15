@@ -1,6 +1,8 @@
 # Xamarin Animated Circle Loading View
 [![platform](https://img.shields.io/badge/platform-Xamarin.Android-brightgreen.svg)](https://www.xamarin.com/)
 [![API](https://img.shields.io/badge/API-10%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=10s)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![NuGet](https://img.shields.io/nuget/v/Xama.JTPorts.RippleBackground.svg?label=NuGet)](https://www.nuget.org/packages/Xama.JTPorts.RippleBackground/)
 
 C# Port of the Android Java library [AnimatedCircleLoadingView](https://github.com/jlmd/AnimatedCircleLoadingView) by [jlmd](https://github.com/jlmd)
 
@@ -28,15 +30,21 @@ C# Port of the Android Java library [AnimatedCircleLoadingView](https://github.c
 
 - [ ] Check for missing functionality in ported library and task out implementation.
 
-- [ ] Create NuGet package.
-
-- [ ] Set-up Travis-CI and make sure it works against the class library.
+- [x] Create NuGet package.
 
 - [x] Fill basic usage information.
 
 # How to Install
 
-At the moment, until I create the nuget package you would need to download the src code, compile and build it, then simply reference the DLL in your Xamarin.Android Project. Or alternatively you could add the project as a project within your solution if you plan on adjusting any of the code for your own uses.
+![NuGetIcon](https://raw.githubusercontent.com/DigitalSa1nt/Xama.JTPorts.AnimatedCircleLoadingView/master/images/nugetIcon.png)
+
+Simply add the [NuGet package](https://www.nuget.org/packages/Xama.JTPorts.RippleBackground/) directly to your Xamarin.Android solution, or use one of the following:
+
+Package Manager:
+> Install-Package Xama.JTPorts.AnimatedCircleLoadingView -Version 1.0.0
+
+.NET CLI:
+> dotnet add package Xama.JTPorts.AnimatedCircleLoadingView --version 1.0.0
 
 ## Basic Usage:
 
