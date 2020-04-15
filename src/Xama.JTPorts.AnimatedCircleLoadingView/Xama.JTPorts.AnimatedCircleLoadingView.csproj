@@ -19,8 +19,8 @@
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <PackageId>Xama.JTPorts.AnimatedCircleLoadingView</PackageId>
     <PackageVersion>1.0.0</PackageVersion>
-    <Description>A determinate/indeterminate loading view animation. Based on android-watch-loading-animation by Nils Banner</Description>
-    <Authors>Joe Tomkinson</Authors>
+    <Description>Xama.JTPorts.AnimatedCircleLoadingView</Description>
+    <Authors>MyCompany</Authors>
     <Title>Xama.JTPorts.AnimatedCircleLoadingView</Title>
     <Summary>A determinate/indeterminate loading view animation. Based on android-watch-loading-animation by Nils Banner</Summary>
     <Owners>Joe Tomkinson</Owners>
@@ -29,6 +29,7 @@
     <PackageLicenseUrl>https://github.com/DigitalSa1nt/Xama.JTPorts.AnimatedCircleLoadingView/blob/master/LICENSE</PackageLicenseUrl>
     <NeutralLanguage>enGB</NeutralLanguage>
     <PackageReleaseNotes>1.0.0 - Initial NuGet Release of library.</PackageReleaseNotes>
+    <PackageIconUrl>https://raw.githubusercontent.com/DigitalSa1nt/Xama.JTPorts.AnimatedCircleLoadingView/master/images/nugetIcon.png</PackageIconUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -85,6 +86,11 @@
     <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="NuGet.Build.Packaging">
+      <Version>0.2.2</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.AppCompat">
       <Version>1.1.0</Version>
     </PackageReference>
