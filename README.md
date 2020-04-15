@@ -30,9 +30,7 @@ C# Port of the Android Java library [AnimatedCircleLoadingView](https://github.c
 
 - [ ] Check for missing functionality in ported library and task out implementation.
 
-- [ ] Create NuGet package.
-
-- [ ] Set-up Travis-CI and make sure it works against the class library.
+- [x] Create NuGet package.
 
 - [x] Fill basic usage information.
 
