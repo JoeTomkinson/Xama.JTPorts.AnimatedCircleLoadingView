@@ -18,9 +18,9 @@
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <PackageId>Xama.JTPorts.AnimatedCircleLoadingView</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <Description>Xama.JTPorts.AnimatedCircleLoadingView</Description>
-    <Authors>MyCompany</Authors>
+    <Authors>Joe Tomkinson</Authors>
     <Title>Xama.JTPorts.AnimatedCircleLoadingView</Title>
     <Summary>A determinate/indeterminate loading view animation. Based on android-watch-loading-animation by Nils Banner</Summary>
     <Owners>Joe Tomkinson</Owners>
@@ -28,7 +28,8 @@
     <PackageProjectUrl>https://github.com/DigitalSa1nt/Xama.JTPorts.AnimatedCircleLoadingView</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/DigitalSa1nt/Xama.JTPorts.AnimatedCircleLoadingView/blob/master/LICENSE</PackageLicenseUrl>
     <NeutralLanguage>enGB</NeutralLanguage>
-    <PackageReleaseNotes>1.0.0 - Initial NuGet Release of library.</PackageReleaseNotes>
+    <PackageReleaseNotes>1.0.1 - Package information adjustment. 
+1.0.0 - Initial NuGet Release of library.</PackageReleaseNotes>
     <PackageIconUrl>https://raw.githubusercontent.com/DigitalSa1nt/Xama.JTPorts.AnimatedCircleLoadingView/master/images/nugetIcon.png</PackageIconUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
