@@ -41,10 +41,10 @@ C# Port of the Android Java library [AnimatedCircleLoadingView](https://github.c
 Simply add the [NuGet package](https://www.nuget.org/packages/Xama.JTPorts.RippleBackground/) directly to your Xamarin.Android solution, or use one of the following:
 
 Package Manager:
-> Install-Package Xama.JTPorts.AnimatedCircleLoadingView -Version 1.0.0
+> Install-Package Xama.JTPorts.AnimatedCircleLoadingView -Version 1.0.1
 
 .NET CLI:
-> dotnet add package Xama.JTPorts.AnimatedCircleLoadingView --version 1.0.0
+> dotnet add package Xama.JTPorts.AnimatedCircleLoadingView --version 1.0.1
 
 ## Basic Usage:
 
